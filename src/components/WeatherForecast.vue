@@ -22,7 +22,7 @@
           /
           {{ weather.maxTemperatureCelsius }}&deg;
           <v-icon>mdi-thermometer</v-icon><br>
-          94% <v-icon>mdi-weather-pouring</v-icon>
+          {{ weather.rainMillimeters }}mm <v-icon>mdi-weather-pouring</v-icon>
         </v-list-item-subtitle>
       </v-list-item>
     </v-list>

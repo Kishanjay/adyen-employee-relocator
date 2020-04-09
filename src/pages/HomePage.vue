@@ -21,7 +21,7 @@
             Date range: {{ dateRange }}
           </span>
           <a
-            @click="() => { alert('Premium required to use this feature')}"
+            @click="() => { alert('Error: premium required to use this feature')}"
           >Change date</a>
         </div>
       </v-alert>
