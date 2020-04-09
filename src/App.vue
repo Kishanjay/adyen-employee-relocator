@@ -1,25 +1,29 @@
 <template>
-  <v-app id="adyen-relocation">
-    <HomePage :app-settings="appSettings" />
+  <v-app id="adyen-relocator">
+    <router-view :app-settings="appSettings" />
   </v-app>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
-import HomePage from '@/pages/HomePage.vue';
+import { City } from '@/types';
 
 interface AppSettingsObject {
-  officeLocations: string[];
+  currentLocation: City;
+  officeLocations: City[];
 }
 const appSettings: AppSettingsObject = {
-  officeLocations: ['Amsterdam', 'Madrid', 'Budapest'],
+  currentLocation: {
+    name: 'Amsterdam', cityCode: 'AMS',
+  },
+  officeLocations: [
+    // { name: 'Amsterdam', cityCode: 'AMS' },
+    { name: 'Madrid', cityCode: 'MAD' },
+    // { name: 'Budapest', cityCode: 'BUD' },
+  ],
 };
 
 export default Vue.extend({
-  components: {
-    HomePage,
-  },
-
   data() {
     return {
       appSettings,

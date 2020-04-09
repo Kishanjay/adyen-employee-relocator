@@ -5,13 +5,12 @@ import { timestampToDate } from '@/libraries/date';
 const API_KEY = 'baf916ac500f6a848b26659626e0ccba';
 const baseDomain = 'http://api.openweathermap.org';
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const defaultParams = {
   APPID: API_KEY,
   units: 'metric',
 };
 
-const baseURL = `${baseDomain}/data/2.5`; // /weather?${qs.stringify(baseParams)}`;
+const baseURL = `${baseDomain}/data/2.5`;
 
 const client = axios.create({
   baseURL,
@@ -35,6 +34,7 @@ export default client;
 type WeatherForecastResponseList = {
   dt: number;
   main: { temp: number; feels_like: number };
+  rain?: { '3h': number };
   // TODO add remaining fields
 }[]
 
@@ -60,11 +60,17 @@ const statsByWeatherDataResponseList = (list: WeatherForecastResponseList) => {
       return prev;
     }, Number.NEGATIVE_INFINITY);
   const avgTemperature = list
-    .reduce((cur, prev) => cur + prev.main.temp / list.length, 0);
-  const avgRainPercentage = 0; // TODO calculate average rain percentage
+    .reduce((prev, cur) => prev + cur.main.temp / list.length, 0);
 
+  const totalRain = list
+    .reduce((prev, cur) => {
+      if (!cur.rain) {
+        return prev;
+      }
+      return prev + cur.rain['3h'];
+    }, 0);
   return {
-    minTemperature, maxTemperature, avgTemperature, avgRainPercentage, dataPoints: list.length,
+    minTemperature, maxTemperature, avgTemperature, totalRain, dataPoints: list.length,
   };
 };
 
@@ -93,13 +99,13 @@ WeatherForecast => {
       weatherByDay[day].push(listEntry);
     });
 
-    // Step 2. Calculate stats by day (min, max, avg)
+    // Step 2. Calculate stats by day (min, max, avg, total)
     const weatherDataResult: WeatherData[] = [];
     Object.entries(weatherByDay).forEach(([dateString, responseList]) => {
       const date = new Date(dateString);
 
       const {
-        minTemperature, maxTemperature, avgTemperature, avgRainPercentage,
+        minTemperature, maxTemperature, avgTemperature, totalRain,
         dataPoints,
       } = statsByWeatherDataResponseList(responseList);
 
@@ -108,7 +114,7 @@ WeatherForecast => {
         minTemperatureCelsius: minTemperature,
         maxTemperatureCelsius: maxTemperature,
         avgTemperatureCelsius: avgTemperature,
-        rainPercentage: avgRainPercentage,
+        rainMillimeters: totalRain,
       };
 
       // If any day does not have almost all (8) datapoints

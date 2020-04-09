@@ -14,15 +14,16 @@
       <v-list-item
         v-for="(weather, index) in data.weather"
         :key="index"
-        class="mt-4"
       >
         <v-list-item-title>{{ weather.date | humanizedDate }}</v-list-item-title>
         <v-list-item-subtitle class="text-right">
           {{ weather.minTemperatureCelsius }}&deg;
           /
           {{ weather.maxTemperatureCelsius }}&deg;
-          <v-icon>mdi-thermometer</v-icon><br>
-          {{ weather.rainMillimeters }}mm <v-icon>mdi-weather-pouring</v-icon>
+          <v-icon>mdi-thermometer</v-icon>
+          <template v-if="showRain">
+            <br>{{ weather.rainMillimeters }}mm <v-icon>mdi-weather-pouring</v-icon>
+          </template>
         </v-list-item-subtitle>
       </v-list-item>
     </v-list>
@@ -39,6 +40,11 @@ export default Vue.extend({
     data: {
       type: Object as PropInterface<WeatherForecast>,
       required: true,
+    },
+    showRain: {
+      type: Boolean,
+      required: false,
+      default: false,
     },
   },
 });

@@ -18,9 +18,15 @@ export const timestampToDate = (timestamp: number): Date => {
   return date;
 };
 
+export const now = () => new Date();
+
+export const futureDate = (startDate: Date, deltaDays: number) => {
+  const date = new Date(startDate);
+  date.setDate(date.getDate() + deltaDays);
+  return date;
+};
 
 export const dateRange = (startDate: Date, numberOfDays: number) => {
-  const endDate = new Date(startDate);
-  endDate.setDate(endDate.getDate() + numberOfDays);
-  return `${dateToDateString(startDate)} - ${dateToDateString(endDate)}`;
+  const endDate = futureDate(startDate, numberOfDays);
+  return `${dateToDateString(startDate)}, ${dateToDateString(endDate)}`;
 };
