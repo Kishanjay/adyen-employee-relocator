@@ -1,5 +1,6 @@
 import axios from 'axios';
-import { FlightSearchRequest } from '../../types';
+import { timestampToDate } from '@/libraries/date';
+import { FlightSearchRequest, FlightData } from '../../types';
 
 const baseURL = 'https://api.skypicker.com';
 
@@ -33,7 +34,7 @@ export interface KiwiRequestParams {
   date_to: string;
 }
 
-export const searchRequestTransformer = (request: FlightSearchRequest): KiwiRequestParams => {
+export const searchRequestTransformator = (request: FlightSearchRequest): KiwiRequestParams => {
   const dateFormatter = (date: Date) => `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
 
   return {
@@ -46,4 +47,32 @@ export const searchRequestTransformer = (request: FlightSearchRequest): KiwiRequ
     // eslint-disable-next-line @typescript-eslint/camelcase
     date_to: dateFormatter(request.fromDateEnd),
   };
+};
+
+interface SearchResponseData {
+  data: {
+    dTime: number;
+    aTime: number;
+    flyFrom: string;
+    flyTo: string;
+    cityFrom: string;
+    cityTo: string;
+    fly_duration: string;
+    price: number;
+    // TODO add remaining fields
+  }[];
+
+}
+export const searchResponseTransformator = ({ data }: {data: SearchResponseData}): FlightData[] => {
+  const flightDatas = data.data;
+  const result = flightDatas.map((flightData) => ({
+    departureAirport: flightData.flyFrom,
+    arivalAirport: flightData.flyTo,
+    departureDate: timestampToDate(flightData.dTime),
+    arivalDate: timestampToDate(flightData.aTime),
+    arivalCity: flightData.cityTo,
+    price: flightData.price,
+    flightDuration: flightData.fly_duration,
+  }));
+  return result;
 };

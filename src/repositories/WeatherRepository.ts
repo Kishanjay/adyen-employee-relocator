@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/camelcase */
 import { WeatherForecast } from '@/types';
-import { forecastResponseTransformator } from './Clients/OpenWeatherMapClient';
-import Client from './Clients/OpenWeatherMapClient.mock';
+import Client, { forecastResponseTransformator } from './Clients/OpenWeatherMapClient';
+
 
 export default {
   async get(city: string) {

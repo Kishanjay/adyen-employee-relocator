@@ -19,6 +19,7 @@
     "vuetify": "^2.2.11"
   },
   "devDependencies": {
+    "@types/chart.js": "^2.9.19",
     "@typescript-eslint/eslint-plugin": "^2.26.0",
     "@typescript-eslint/parser": "^2.26.0",
     "@vue/cli-plugin-babel": "~4.3.0",

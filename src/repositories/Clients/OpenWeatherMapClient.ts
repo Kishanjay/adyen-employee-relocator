@@ -38,7 +38,7 @@ type WeatherForecastResponseList = {
   // TODO add remaining fields
 }[]
 
-interface WeatherForecastResponse {
+interface WeatherForecastResponseData {
   list: WeatherForecastResponseList;
   city: { name: string; country: string };
   // TODO add remaining fields
@@ -79,7 +79,7 @@ const statsByWeatherDataResponseList = (list: WeatherForecastResponseList) => {
  * that is returned by openWeatherMap to the more generic
  * WeatherForecastData
  */
-export const forecastResponseTransformator = ({ data }: {data: WeatherForecastResponse}):
+export const forecastResponseTransformator = ({ data }: {data: WeatherForecastResponseData}):
 WeatherForecast => {
   const result: WeatherForecast = { city: '', weather: [] };
   result.city = data.city.name;

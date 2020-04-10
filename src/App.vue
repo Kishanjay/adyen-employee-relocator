@@ -14,12 +14,13 @@ interface AppSettingsObject {
 }
 const appSettings: AppSettingsObject = {
   currentLocation: {
-    name: 'Amsterdam', cityCode: 'AMS',
+    name: 'New York', cityCode: 'NYC',
   },
   officeLocations: [
-    // { name: 'Amsterdam', cityCode: 'AMS' },
+    { name: 'Amsterdam', cityCode: 'AMS' },
     { name: 'Madrid', cityCode: 'MAD' },
-    // { name: 'Budapest', cityCode: 'BUD' },
+    { name: 'Budapest', cityCode: 'BUD' },
+
   ],
 };
 

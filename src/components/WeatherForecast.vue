@@ -31,14 +31,14 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import { PropInterface, WeatherForecast } from '../types';
+import Vue, { PropType } from 'vue';
+import { WeatherForecast } from '../types';
 
 
 export default Vue.extend({
   props: {
     data: {
-      type: Object as PropInterface<WeatherForecast>,
+      type: Object as PropType<WeatherForecast>,
       required: true,
     },
     showRain: {
