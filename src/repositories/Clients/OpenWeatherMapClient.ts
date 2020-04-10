@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { WeatherForecast, WeatherData } from '@/types';
+import { WeatherForecast, Weather } from '@/types';
 import { timestampToDate } from '@/libraries/date';
 
 const API_KEY = 'baf916ac500f6a848b26659626e0ccba';
@@ -88,7 +88,7 @@ WeatherForecast => {
   // into weatherData containing the date and average weather
   // of that day
   const weatherDataByForecastResponseList = (list: WeatherForecastResponseList):
-  WeatherData[] => {
+  Weather[] => {
     // Step 1. Group weather by day
     const weatherByDay: {[key: string]: WeatherForecastResponseList} = {};
     list.forEach((listEntry) => {
@@ -100,7 +100,7 @@ WeatherForecast => {
     });
 
     // Step 2. Calculate stats by day (min, max, avg, total)
-    const weatherDataResult: WeatherData[] = [];
+    const weatherResult: Weather[] = [];
     Object.entries(weatherByDay).forEach(([dateString, responseList]) => {
       const date = new Date(dateString);
 
@@ -109,7 +109,7 @@ WeatherForecast => {
         dataPoints,
       } = statsByWeatherDataResponseList(responseList);
 
-      const weatherData: WeatherData = {
+      const weather: Weather = {
         date,
         minTemperatureCelsius: minTemperature,
         maxTemperatureCelsius: maxTemperature,
@@ -123,10 +123,10 @@ WeatherForecast => {
       if (dataPoints < 6) {
         return;
       }
-      weatherDataResult.push(weatherData);
+      weatherResult.push(weather);
     });
 
-    return weatherDataResult;
+    return weatherResult;
   };
 
   result.weather = weatherDataByForecastResponseList(data.list);

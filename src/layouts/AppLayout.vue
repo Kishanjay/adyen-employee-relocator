@@ -3,7 +3,7 @@
     class="d-flex flex-column"
     style="min-height: 100vh;"
   >
-    <the-appbar />
+    <the-appbar :app-settings="appSettings" />
 
     <v-content>
       <slot />
@@ -24,7 +24,12 @@ export default Vue.extend({
     TheAppbar,
     TheNavigator,
   },
-
+  props: {
+    appSettings: {
+      type: Object,
+      required: true,
+    },
+  },
   data() {
     return {
       drawer: null,

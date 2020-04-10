@@ -1,20 +1,26 @@
 import Vue from 'vue';
 import VueRouter, { RouteConfig } from 'vue-router';
-import DashboardPage from '@/views/DashboardPage.vue';
-import GraphPage from '@/views/GraphPage.vue';
+import WeatherPage from '@/views/WeatherPage.vue';
+import FlightsPage from '@/views/FlightsPage.vue';
+import ImagesPage from '@/views/ImagesPage.vue';
 
 Vue.use(VueRouter);
 
 const routes: Array<RouteConfig> = [
   {
     path: '/',
-    name: 'dashboard',
-    component: DashboardPage,
+    name: 'weather',
+    component: WeatherPage,
   },
   {
-    path: '/graph',
-    name: 'graph',
-    component: GraphPage,
+    path: '/flights',
+    name: 'flights',
+    component: FlightsPage,
+  },
+  {
+    path: '/images',
+    name: 'images',
+    component: ImagesPage,
   },
 ];
 

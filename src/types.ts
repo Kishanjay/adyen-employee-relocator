@@ -6,14 +6,12 @@ export interface LineChartData {
   borderColor?: string;
   fill?: boolean;
 }
-
 export type LineChartDataArr = LineChartData[];
 
-export interface City {
-  name: string;
-  cityCode: string;
+export interface SearchResultImage {
+  title: string;
+  imageURL: string;
 }
-
 export interface FlightSearchRequest {
   fromCityCode: string;
   toCityCode: string;
@@ -31,7 +29,12 @@ export interface FlightData {
 }
 export type FlightDataArr = FlightData[];
 
-export interface WeatherData {
+export interface City {
+  name: string;
+  cityCode: string;
+}
+
+export interface Weather {
   date: Date;
   minTemperatureCelsius: number;
   maxTemperatureCelsius: number;
@@ -41,5 +44,5 @@ export interface WeatherData {
 
 export interface WeatherForecast {
   city: string;
-  weather: WeatherData[];
+  weather: Weather[];
 }

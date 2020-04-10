@@ -4,20 +4,23 @@
       value="dashboard"
       to="/"
     >
-      <span>Dashboard</span>
+      <span>Weather</span>
       <v-icon>mdi-view-dashboard</v-icon>
     </v-btn>
 
     <v-btn
-      value="graph"
-      to="/graph"
+      value="flights"
+      to="/flights"
     >
-      <span>Graph</span>
+      <span>Flights</span>
       <v-icon>mdi-chart-line</v-icon>
     </v-btn>
 
-    <v-btn value="recommender">
-      <span>Recommender</span>
+    <v-btn
+      value="images"
+      to="/images"
+    >
+      <span>Mood</span>
       <v-icon>mdi-clipboard-text</v-icon>
     </v-btn>
   </v-bottom-navigation>
