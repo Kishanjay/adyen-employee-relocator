@@ -8,7 +8,7 @@ import { SearchResultImage } from '@/types';
 const baseURL = 'https://api.qwant.com/api/search/images';
 
 const defaultParams = {
-  count: 10,
+  count: 9,
   uiv: 4,
   t: 'images',
 };
@@ -17,7 +17,8 @@ const client = axios.create({
   baseURL: `http://api.scraperapi.com/?api_key=57fce81e173fb271dcf43ffb4e6eee3e&url=${baseURL}`,
 });
 
-// Since we're using a proxy to bypass CORS
+// Since we're using a proxy to bypass CORS the query params
+// should be part of the url
 client.interceptors.request.use((config) => {
   const params = Object.assign(defaultParams, config.params);
 

@@ -46,7 +46,7 @@ export default Vue.extend({
   data() {
     return {
       flightSearchResults: [] as FlightDataArr[],
-      flightDataValues: [] as LineChartDataArr,
+      cheapestFlightsOfCities: [] as LineChartDataArr,
     };
   },
   computed: {
@@ -82,16 +82,17 @@ export default Vue.extend({
 
       Promise.all(flightSearchesPerCity).then((response) => {
         this.flightSearchResults = response;
-        this.computeFlightDataValues();
+        this.computeCheapestFlightsOfCities();
       });
     },
-    computeFlightDataValues(): void {
+    computeCheapestFlightsOfCities(): void {
       const result = [] as LineChartDataArr;
-      // for the flightData of every city
+      // Loop over the flight data of each city
       this.flightSearchResults.forEach((cityFlightDatas) => {
-        const cheapestFlights: number[] = [];
-        // find cheapest flight for each date
+        const cheapestFlightsArr: number[] = [];
+        // Loop over the dates we're fetching
         this.flightDataDateStrings.forEach((dateString) => {
+          // Find the cheapest flight for this date
           const cheapestFlightOnDate = cityFlightDatas.reduce((prev, cur) => {
             if (dateToDateString(cur.departureDate) !== dateString) {
               return prev;
@@ -102,18 +103,19 @@ export default Vue.extend({
             return prev;
           }, { departureDate: new Date(), price: 0 } as unknown as FlightData);
 
-          cheapestFlights.push(cheapestFlightOnDate.price);
+          cheapestFlightsArr.push(cheapestFlightOnDate.price);
         });
 
-        const cityFlightData: LineChartData = {
+        //
+        const cheapestFlightsOfCity: LineChartData = {
           label: cityFlightDatas[0].arivalCity,
-          data: cheapestFlights,
+          data: cheapestFlightsArr,
         };
 
-        result.push(cityFlightData);
+        result.push(cheapestFlightsOfCity);
       });
 
-      this.flightDataValues = result;
+      this.cheapestFlightsOfCities = result;
     },
   },
 });

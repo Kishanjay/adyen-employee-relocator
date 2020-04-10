@@ -12,8 +12,8 @@
           <v-card-title>{{ imagesOfCity.city }}</v-card-title>
           <v-row>
             <v-col
-              v-for="(image, index) in imagesOfCity.images"
-              :key="index"
+              v-for="(image, imageIndex) in imagesOfCity.images"
+              :key="imageIndex"
               class="d-flex child-flex"
               cols="4"
             >
