@@ -14,7 +14,7 @@ const defaultParams = {
 };
 
 const client = axios.create({
-  baseURL: `http://api.scraperapi.com/?api_key=57fce81e173fb271dcf43ffb4e6eee3e&url=${baseURL}`,
+  baseURL: `https://api.scraperapi.com/?api_key=57fce81e173fb271dcf43ffb4e6eee3e&url=${baseURL}`,
 });
 
 // Since we're using a proxy to bypass CORS the query params

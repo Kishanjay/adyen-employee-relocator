@@ -4,10 +4,10 @@
       <v-card>
         <v-card-title>Cheapest flights per day</v-card-title>
         <line-chart
-          v-if="flightDataValues.length"
+          v-if="cheapestFlightsOfCities.length"
           class="pa-4"
           :x-axis-labels="flightDataDateStrings"
-          :values="flightDataValues"
+          :values="cheapestFlightsOfCities"
         />
         <v-skeleton-loader
           v-else

@@ -3,7 +3,7 @@ import { WeatherForecast, Weather } from '@/types';
 import { timestampToDate } from '@/libraries/date';
 
 const API_KEY = 'baf916ac500f6a848b26659626e0ccba';
-const baseDomain = 'http://api.openweathermap.org';
+const baseDomain = 'https://api.openweathermap.org';
 
 const defaultParams = {
   APPID: API_KEY,
