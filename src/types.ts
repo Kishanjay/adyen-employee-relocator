@@ -1,3 +1,9 @@
+
+export interface AppSettings {
+  currentLocation: City;
+  officeLocations: City[];
+}
+
 export type ChartLabels = string[];
 
 export interface LineChartData {

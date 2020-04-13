@@ -12,7 +12,7 @@ interface AppSettingsObject {
   currentLocation: City;
   officeLocations: City[];
 }
-const appSettings: AppSettingsObject = {
+const defaultAppSettings: AppSettingsObject = {
   currentLocation: {
     name: 'New York', cityCode: 'NYC',
   },
@@ -26,6 +26,16 @@ const appSettings: AppSettingsObject = {
 
 export default Vue.extend({
   data() {
+    let appSettings = defaultAppSettings;
+    const localAppSettings = localStorage.getItem('appSettings');
+    if (localAppSettings) {
+      try {
+        appSettings = JSON.parse(localAppSettings);
+      } catch (e) {
+        console.log({ e });
+      }
+    }
+
     return {
       appSettings,
     };

@@ -5,6 +5,14 @@
       clipped-left
     >
       <v-toolbar-title>Relocation Helper</v-toolbar-title>
+      <v-spacer />
+      <v-btn
+        outlined
+        @click="$emit('toggle:settings');"
+      >
+        <v-icon>mdi-cog</v-icon>
+        Settings
+      </v-btn>
 
       <template v-slot:extension>
         <div class="d-flex wp100">
