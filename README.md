@@ -1,7 +1,7 @@
 # About
 ![Deploy to GitHub Pages](https://github.com/Kishanjay/adyen-relocator/workflows/Deploy%20to%20GitHub%20Pages/badge.svg)
 
-[view result](https://kishanjay.github.io/adyen-relocator/)
+[view result](https://kishanjay.github.io/adyen-employee-relocator/)
 
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/edb5b8e4-0d57-4862-8bfc-cdd03418998b/deploy-status)](https://app.netlify.com/sites/jovial-blackwell-89a6fd/deploys)
