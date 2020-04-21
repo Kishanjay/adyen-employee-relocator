@@ -4,6 +4,10 @@
 [view result](https://kishanjay.github.io/adyen-relocator/)
 
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/edb5b8e4-0d57-4862-8bfc-cdd03418998b/deploy-status)](https://app.netlify.com/sites/jovial-blackwell-89a6fd/deploys)
+
+[view result](https://jovial-blackwell-89a6fd.netlify.app/)
+
 ## Assignment
 Jamie's vacation is about to end. She works at an international company, so she can choose another office to work from: either Amsterdam, Madrid, or Budapest. Help her choose which office to go to – she’d like someplace with good weather or cheap flights (or both).
 
